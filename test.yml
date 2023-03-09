@@ -1,0 +1,139 @@
+---
+- id: 1
+  name: "122"
+  coordinates:
+    coordinatesX: 1.0
+    coordinatesY: 1.0
+  creationDate:
+  - 2023
+  - 3
+  - 8
+  - 14
+  - 18
+  - 46
+  - 185927000
+  studentsCount: 1
+  shouldBeExpelled: 1
+  averageMark: 1.0
+  semesterEnum: "SECOND"
+  groupAdmin:
+    name: "goga"
+    birthday: -20404753200000
+    eyeColor: "GREEN"
+    hairColor: "RED"
+    nationality: "VATICAN"
+- id: 2
+  name: "vehvehveh"
+  coordinates:
+    coordinatesX: 3.0
+    coordinatesY: 4.0
+  creationDate:
+  - 2023
+  - 3
+  - 8
+  - 14
+  - 21
+  - 11
+  - 857057000
+  studentsCount: 4
+  shouldBeExpelled: 4
+  averageMark: 4.0
+  semesterEnum: "FIRST"
+  groupAdmin:
+    name: "goga"
+    birthday: 1081454400000
+    eyeColor: "GREEN"
+    hairColor: "RED"
+    nationality: "VATICAN"
+- id: 3
+  name: "vehvehveh"
+  coordinates:
+    coordinatesX: 3.0
+    coordinatesY: 4.0
+  creationDate:
+  - 2023
+  - 3
+  - 8
+  - 14
+  - 21
+  - 11
+  - 857057000
+  studentsCount: 4
+  shouldBeExpelled: 4
+  averageMark: 4.0
+  semesterEnum: "FIRST"
+  groupAdmin:
+    name: "oleg"
+    birthday: 1081454400000
+    eyeColor: "GREEN"
+    hairColor: "RED"
+    nationality: "VATICAN"
+- id: 4
+  name: "vehvehveh"
+  coordinates:
+    coordinatesX: 3.0
+    coordinatesY: 4.0
+  creationDate:
+  - 2023
+  - 3
+  - 8
+  - 14
+  - 21
+  - 11
+  - 857057000
+  studentsCount: 4
+  shouldBeExpelled: 4
+  averageMark: 4.0
+  semesterEnum: "FIFTH"
+  groupAdmin:
+    name: "puk"
+    birthday: 1081454400000
+    eyeColor: "GREEN"
+    hairColor: "RED"
+    nationality: "VATICAN"
+- id: 5
+  name: "1"
+  coordinates:
+    coordinatesX: 1.0
+    coordinatesY: 1.0
+  creationDate:
+  - 2023
+  - 3
+  - 8
+  - 18
+  - 6
+  - 45
+  - 656164000
+  studentsCount: 1
+  shouldBeExpelled: 1
+  averageMark: 1.0
+  semesterEnum: "FIRST"
+  groupAdmin:
+    name: "dh"
+    birthday: 1041714000000
+    eyeColor: "GREEN"
+    hairColor: "RED"
+    nationality: "VATICAN"
+- id: 6
+  name: "2"
+  coordinates:
+    coordinatesX: 2.0
+    coordinatesY: 2.0
+  creationDate:
+  - 2023
+  - 3
+  - 8
+  - 18
+  - 9
+  - 15
+  - 236239000
+  studentsCount: 2
+  shouldBeExpelled: 2
+  averageMark: 2.0
+  semesterEnum: "FIRST"
+  groupAdmin:
+    name: "qdfghgjghdgsf"
+    birthday: 7773609706681345152
+    eyeColor: "GREEN"
+    hairColor: "RED"
+    nationality: "VATICAN"

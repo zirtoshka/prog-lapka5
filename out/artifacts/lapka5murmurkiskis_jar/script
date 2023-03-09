@@ -1,0 +1,13 @@
+info
+show
+filter_contains_name XYU
+update_by_id 1
++
+pek
+-
+-
+-
+-
+-
+-
+execute_script script
