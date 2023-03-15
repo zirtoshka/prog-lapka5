@@ -1,6 +1,5 @@
 package org.example.parser_YAML;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import org.example.description_for_collection.StudyGroup;
