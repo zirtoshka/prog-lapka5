@@ -1,6 +1,5 @@
 package org.example.IO;
 
-import org.example.commands.FilterContainsNameCommand;
 import org.example.utilities.CommandManager;
 import org.example.utilities.HistoryWriter;
 import org.example.Main;
@@ -221,7 +220,7 @@ public class ConsoleManager {
                     userCmd[ARG_CMD] = userCmd[ARG_CMD].trim();
                 }
                 System.out.println(Main.INPUT_COMMAND + String.join(" ", userCmd));
-                if (userCmd[NAME_CMD].equals("execute_script")) {
+                if (userCmd[NAME_CMD].equals(EXECUTE_SCRIPT)) {
                     for (String scri : script) {
                         if (userCmd[ARG_CMD].equals(scri)) throw new ScriptRecurentException();
                     }
@@ -230,7 +229,7 @@ public class ConsoleManager {
             } while (cmdStatus == SUCCESSFUL_EXECUTION && scriptScanner.hasNextLine());
             scannerManager.setScanner(tmpScanner);
             scannerManager.setUserMode();
-            if (cmdStatus == NOT_SUCCESSFUL_EXECUTION && !userCmd[NAME_CMD].equals("execute_script") && userCmd[ARG_CMD].isEmpty())
+            if (cmdStatus == NOT_SUCCESSFUL_EXECUTION && !userCmd[NAME_CMD].equals(EXECUTE_SCRIPT) && userCmd[ARG_CMD].isEmpty())
                 throw new IncorrectScriptException();
             return cmdStatus;
         } catch (NoAccessToFileException e) {
