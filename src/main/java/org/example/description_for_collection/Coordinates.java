@@ -4,8 +4,6 @@ import org.example.IO.ConsoleManager;
 import org.example.exceptions.IncorrectValueException;
 import org.example.exceptions.NotNullException;
 
-import java.io.IOException;
-
 public class Coordinates {
 
     private Double coordinatesX; //Максимальное значение поля: 576, Поле не может быть null
@@ -20,11 +18,10 @@ public class Coordinates {
     public Coordinates(Double x, Float y)  {
         this.setX(x);
         this.setY(y);
-        }
+    }
 
     public void setX(Double coordinatesX) {
         try {
-            System.out.println("7");
             if (coordinatesX == null) throw new NotNullException();
             if (coordinatesX > MAX_X) throw new IncorrectValueException();
             this.coordinatesX = coordinatesX;
@@ -43,7 +40,6 @@ public class Coordinates {
 
     public void setY(Float coordinatesY) {
         try {
-            System.out.println("8");
             if (coordinatesY == null) throw new NotNullException();
             if (coordinatesY < MIN_Y) throw new IncorrectValueException();
             this.coordinatesY = coordinatesY;

@@ -1,13 +1,11 @@
 package org.example.description_for_collection;
 
-import com.fasterxml.jackson.databind.exc.ValueInstantiationException;
 import org.example.IO.ConsoleManager;
-import org.example.IO.ScannerManager;
 import org.example.exceptions.NotNullException;
 import org.example.exceptions.WrongNameException;
 
-import java.text.ParseException;
 import java.util.Date;
+
 import static org.example.IO.ScannerManager.patternSymbols;
 
 public class Person {
@@ -74,10 +72,11 @@ public class Person {
 
     public void setHairColor(ColorHair hairColor) {
         try {
-            if (hairColor == null){
-                this.hairColor=null;
+            if (hairColor == null) {
+                this.hairColor = null;
                 return;
-            }this.hairColor = hairColor;
+            }
+            this.hairColor = hairColor;
         } catch (IllegalArgumentException e) {
             ConsoleManager.printError("Hmm.. I don't know this hair color");
             System.exit(0);
@@ -90,10 +89,11 @@ public class Person {
 
     public void setNationality(Country nationality) {
         try {
-            if (nationality == null){
-                this.nationality=null;
+            if (nationality == null) {
+                this.nationality = null;
                 return;
-            }this.nationality = nationality;
+            }
+            this.nationality = nationality;
         } catch (IllegalArgumentException e) {
             ConsoleManager.printError("Hmm.. I don't know this country");
             System.exit(0);
