@@ -4,7 +4,7 @@ public enum ColorHair {
     RED("RED"),
     BLUE("BLUE"),
     YELLOW("YELLOW");
-    private String color;
+    private final String color;
     ColorHair (String color){
         this.color=color;
     }

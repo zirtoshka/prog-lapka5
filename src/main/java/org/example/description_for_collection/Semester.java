@@ -1,15 +1,16 @@
 package org.example.description_for_collection;
 
 public enum Semester {
-    FIRST ("FIRST"),
-    SECOND ("SECOND"),
-    FIFTH ("FIFTH");
-    private String semester;
+    FIRST("FIRST"),
+    SECOND("SECOND"),
+    FIFTH("FIFTH");
+    private final String semester;
+
     Semester(String semester) {
-        this.semester=semester;
+        this.semester = semester;
     }
 
-    public static String getList(){
+    public static String getList() {
         StringBuilder types = new StringBuilder();
         for (Semester type : values()) {
             types.append(type.name()).append("; ");

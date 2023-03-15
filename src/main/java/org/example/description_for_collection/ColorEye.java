@@ -1,14 +1,16 @@
 package org.example.description_for_collection;
 
 public enum ColorEye {
-    GREEN ("GREEN"),
+    GREEN("GREEN"),
     YELLOW("YELLOW"),
     BROWN("BROWN");
-    private String color;
-    ColorEye (String color){
-        this.color=color;
+    private final String color;
+
+    ColorEye(String color) {
+        this.color = color;
     }
-    public static String getList(){
+
+    public static String getList() {
         StringBuilder types = new StringBuilder();
         for (ColorEye type : values()) {
             types.append(type.name()).append("; ");

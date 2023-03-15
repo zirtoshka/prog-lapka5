@@ -4,11 +4,13 @@ public enum Country {
     VATICAN("VATICAN"),
     THAILAND("THAILAND"),
     NORTH_KOREA("NORTH_KOREA");
-    private String country;
-    Country(String country){
-        this.country=country;
+    private final String country;
+
+    Country(String country) {
+        this.country = country;
     }
-    public static String getList(){
+
+    public static String getList() {
         StringBuilder types = new StringBuilder();
         for (Country type : values()) {
             types.append(type.name()).append("; ");
