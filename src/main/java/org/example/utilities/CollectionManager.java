@@ -54,6 +54,7 @@ public class CollectionManager {
 
     public void addToCollection(StudyGroup studyGroupFromUser) {
         studyGroupCollection.add(studyGroupFromUser);
+        lastInitTime = LocalDateTime.now();
     }
 
     public LocalDateTime getLastInitTime() {
