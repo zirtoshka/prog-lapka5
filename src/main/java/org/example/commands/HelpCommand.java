@@ -17,7 +17,7 @@ public class HelpCommand extends Command {
             if (!arg.isEmpty()) throw new ArgsException();
             return true;
         } catch (ArgsException e) {
-            ConsoleManager.printError("Usgae: '" + getName() + "'");
+            ConsoleManager.printError("Usage: '" + getName() + "'");
         }
         return false;
     }

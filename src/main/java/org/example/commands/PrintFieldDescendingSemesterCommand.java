@@ -10,7 +10,7 @@ public class PrintFieldDescendingSemesterCommand extends Command {
     private final CollectionManager collectionManager;
 
     public PrintFieldDescendingSemesterCommand(CollectionManager collectionManager) {
-        super("print_field_descending_semester_enum", "вывести значения поля semesterEnum всех элементов в порядке убывания");
+        super("print_field_descending_semester_enum", "display the values of the semesterEnum field of all elements in descending order");
         this.collectionManager = collectionManager;
     }
 

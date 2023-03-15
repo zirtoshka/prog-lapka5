@@ -10,7 +10,7 @@ public class FilterContainsNameCommand extends Command {
     private final CollectionManager collectionManager;
 
     public FilterContainsNameCommand(CollectionManager collectionManager) {
-        super("filter_contains_name <name>", "вывести элементы, значение поля name которых содержит заданную подстроку");
+        super("filter_contains_name <name>", "display elements whose name field value contains the given substring");
         this.collectionManager = collectionManager;
     }
 
@@ -24,7 +24,7 @@ public class FilterContainsNameCommand extends Command {
             for (StudyGroup sg : collectionManager.getStudyGroupCollection()
             ) {
                 if (sg.getName().contains(name)) {
-                    ConsoleManager.printInfo1(sg.getName());
+                    ConsoleManager.printInfoPurpleBackground(sg.getName());
                     isDone = true;
                 }
             }

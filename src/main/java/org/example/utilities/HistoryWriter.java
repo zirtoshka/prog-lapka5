@@ -1,10 +1,12 @@
 package org.example.utilities;
 
+import org.example.Main;
+
 public class HistoryWriter {
     private String[] history;
 
     public HistoryWriter() {
-        this.history = new String[13];
+        this.history = new String[Main.numberOfCmd];
     }
 
     public String[] getHistory() {
@@ -12,9 +14,9 @@ public class HistoryWriter {
     }
 
     public void addInHistory(String newCommand) {
-        for (int i = 0; i < 12; i++) {
+        for (int i = 0; i < Main.numberOfCmd-1; i++) {
             history[i] = history[i + 1];
         }
-        history[12] = newCommand;
+        history[Main.numberOfCmd-1] = newCommand;
     }
 }

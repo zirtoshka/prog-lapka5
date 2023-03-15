@@ -26,11 +26,11 @@ public class InfoCommand extends Command {
             LocalDateTime lastSaveTime = collectionManager.getLastSaveTime();
             String lastSaveTimeStr = (lastSaveTime == null) ? "No saves in this session" :
                     lastSaveTime.toString();
-            ConsoleManager.printInfo("Collection info:");
-            ConsoleManager.printInfo(" Type: " + collectionManager.collectionType());
-            ConsoleManager.printInfo(" Quantity: " + collectionManager.collectionSize());
-            ConsoleManager.printInfo(" Last save: " + lastSaveTimeStr);
-            ConsoleManager.printInfo(" Last enter: " + lastInitTimeStr);
+            ConsoleManager.printInfoPurple("Collection info:");
+            ConsoleManager.printInfoPurple(" Type: " + collectionManager.collectionType());
+            ConsoleManager.printInfoPurple(" Quantity: " + collectionManager.collectionSize());
+            ConsoleManager.printInfoPurple(" Last save: " + lastSaveTimeStr);
+            ConsoleManager.printInfoPurple(" Last enter: " + lastInitTimeStr);
             return true;
         } catch (ArgsException e) {
             ConsoleManager.printError("Usage: '" + getName() + "'");

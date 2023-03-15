@@ -9,7 +9,7 @@ public class HeadCommand extends Command {
     private final CollectionManager collectionManager;
 
     public HeadCommand(CollectionManager collectionManager) {
-        super("head", "print the first elemet of the collecion");
+        super("head", "print the first element of the collection");
         this.collectionManager = collectionManager;
     }
 
@@ -18,7 +18,7 @@ public class HeadCommand extends Command {
         try {
             if (!arg.isEmpty()) throw new ArgsException();
             if (collectionManager.collectionSize() == 0) throw new NullCollectionException();
-            ConsoleManager.printInfo1(collectionManager.headOfCollection());
+            ConsoleManager.printInfoPurpleBackground(collectionManager.headOfCollection());
             return true;
         } catch (ArgsException e) {
             ConsoleManager.printError("Usage: '" + getName() + "'");

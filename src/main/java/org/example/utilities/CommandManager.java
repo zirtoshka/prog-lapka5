@@ -66,16 +66,6 @@ public class CommandManager {
         commands.add(printUniqueAdminCmd);
     }
 
-    public List<Command> getCmd() {
-        return commands;
-    }
-
-    public boolean noSuchCommand(String arg) {
-        ConsoleManager.printError("I don't know this command:( You can enter 'help' for help");
-        return false;
-    }
-
-    //DELETE IOEXCEPTIONS!!!!!!!???????/
     public boolean info(String arg) throws IOException {
         return infoCmd.execute(arg);
     }
@@ -87,7 +77,7 @@ public class CommandManager {
     public boolean help(String arg) throws IOException {
         if (helpCmd.execute(arg)) {
             for (Command cmd : commands) {
-                ConsoleManager.printInfo1("Command name - " + cmd.getName() + ". Command's description: " + cmd.getDiscription());
+                ConsoleManager.printInfoPurpleBackground("Command name - " + cmd.getName() + ". Command's description: " + cmd.getDescription());
             }
             return true;
         } else {

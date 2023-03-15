@@ -3,10 +3,11 @@ package org.example.utilities;
 import org.example.IO.ConsoleManager;
 import org.example.description_for_collection.StudyGroup;
 import org.example.exceptions.NotNullException;
-import org.example.parserYAML.ReadYAMLParser;
-import org.example.parserYAML.WriteYAMLParses;
+import org.example.parser_YAML.ReadYAMLParser;
+import org.example.parser_YAML.WriteYAMLParses;
 
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayDeque;
 
@@ -24,7 +25,10 @@ public class FileManager {
         return fileName;
     }
     public String getPath(){return path;}
-
+    public boolean isFileEmpty() {
+        File file = new File(path);
+        return file.length() == 0;
+    }
     public ArrayDeque<StudyGroup> loadFromFile() {
         ReadYAMLParser yaml = new ReadYAMLParser();
         ArrayDeque<StudyGroup> studyGroupCollection = null;

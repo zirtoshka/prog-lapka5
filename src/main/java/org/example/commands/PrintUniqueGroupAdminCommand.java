@@ -13,7 +13,7 @@ public class PrintUniqueGroupAdminCommand extends Command {
     private final CollectionManager collectionManager;
 
     public PrintUniqueGroupAdminCommand(CollectionManager collectionManager) {
-        super("print_unique_group_admin", "вывести уникальные значения поля groupAdmin всех элементов в коллекции");
+        super("print_unique_group_admin", "display the unique values of the groupAdmin field of all items in the collection");
         this.collectionManager = collectionManager;
     }
 
@@ -34,7 +34,7 @@ public class PrintUniqueGroupAdminCommand extends Command {
             ) {
                 nameSet1.remove(a);
             }
-            ConsoleManager.printInfo(nameSet1);
+            ConsoleManager.printInfoPurple(nameSet1);
             return true;
         } catch (ArgsException e) {
             ConsoleManager.printError("Usage: '" + getName() + "'");

@@ -1,7 +1,18 @@
 package org.example.description_for_collection;
 
+import com.fasterxml.jackson.annotation.JacksonAnnotation;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.example.IO.ConsoleManager;
+import org.example.exceptions.IncorrectValueException;
+import org.example.exceptions.NotNullException;
+import org.example.exceptions.WrongNameException;
+import org.example.utilities.CollectionManager;
+
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Objects;
+
+import static org.example.IO.ScannerManager.patternSymbols;
 
 public class StudyGroup {
     private Integer id; //Поле не может быть null,
@@ -9,6 +20,7 @@ public class StudyGroup {
     // Значение этого поля должно быть уникальным,
     // Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
+    @JsonIgnoreProperties(allowSetters = true, allowGetters = true)
     private Coordinates coordinates; //Поле не может быть null
     private java.time.LocalDateTime creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
     private int studentsCount; //Значение поля должно быть больше 0
@@ -16,7 +28,9 @@ public class StudyGroup {
     private double averageMark; //Значение поля должно быть больше 0
     private Semester semesterEnum; //Поле не может быть null
     private Person groupAdmin; //Поле может быть null
-    public StudyGroup(){}
+
+    public StudyGroup() {
+    }
 
     public StudyGroup(Integer id, String name, Coordinates coordinates, java.time.LocalDateTime creationDate, int studentsCount, Integer shouldBeExpelled, double averageMark, Semester semesterEnum, Person groupAdmin) {
         this.id = id;
@@ -31,7 +45,17 @@ public class StudyGroup {
     }
 
     public void setName(String name) {
-        this.name = name;
+        try {
+            if (name == null || name.isEmpty()) throw new NotNullException();
+            if (!patternSymbols.matcher(name).matches()) throw new WrongNameException();
+            this.name = name;
+        } catch (NotNullException e) {
+            ConsoleManager.printError("Name group can't be empty, bye");
+            System.exit(0);
+        } catch (WrongNameException e) {
+            ConsoleManager.printError("I can parse only char symbol! (letters, numbers and '_')");
+            System.exit(0);
+        }
     }
 
     public String getName() {
@@ -39,7 +63,18 @@ public class StudyGroup {
     }
 
     public void setId(Integer id) {
-        this.id = id;
+        try {
+            if (id == null) throw new NotNullException();
+            if (id <= 0) throw new IncorrectValueException();
+            this.id = id;
+        } catch (NotNullException e) {
+            ConsoleManager.printError("ID can't be null");
+            System.exit(0);
+        } catch (IncorrectValueException e) {
+            ConsoleManager.printError("ID has incorrect value");
+            System.exit(0);
+        }
+
     }
 
     public Integer getId() {
@@ -47,7 +82,16 @@ public class StudyGroup {
     }
 
     public void setAverageMark(double averageMark) {
-        this.averageMark = averageMark;
+        try {
+            if (averageMark <= 0) throw new IncorrectValueException();
+            this.averageMark = averageMark;
+        } catch (IncorrectValueException e) {
+            ConsoleManager.printError("Mark has to be more than 0");
+            System.exit(0);
+        } catch (NumberFormatException e) {
+            ConsoleManager.printError("Given String is not parsable to double");
+            System.exit(0);
+        }
     }
 
     public double getAverageMark() {
@@ -55,13 +99,15 @@ public class StudyGroup {
     }
 
     public void setCoordinates(Coordinates coordinates) {
-        this.coordinates = coordinates;
+        this.coordinates=new Coordinates();
+        this.coordinates.setX(coordinates.getCoordinatesX());
+        this.coordinates.setY(coordinates.getCoordinatesY());
     }
 
     public Coordinates getCoordinates() {
         return coordinates;
     }
-    //дата должна сама генерироваться
+
     public void setCreationDate(LocalDateTime creationDate) {
         this.creationDate = creationDate;
     }
@@ -79,7 +125,17 @@ public class StudyGroup {
     }
 
     public void setSemesterEnum(Semester semesterEnum) {
-        this.semesterEnum = semesterEnum;
+        try {
+            if (semesterEnum == null) throw new NotNullException();
+            this.semesterEnum = semesterEnum;
+        } catch (NotNullException e) {
+            ConsoleManager.printError("Semester can't be empty");
+            System.exit(0);
+        } catch (IllegalArgumentException e) {
+            ConsoleManager.printError("Hmm.. I don't know this semester");
+            System.exit(0);
+        }
+
     }
 
     public Semester getSemesterEnum() {
@@ -87,7 +143,18 @@ public class StudyGroup {
     }
 
     public void setShouldBeExpelled(Integer shouldBeExpelled) {
-        this.shouldBeExpelled = shouldBeExpelled;
+        try {
+            if (shouldBeExpelled == null) {
+                this.shouldBeExpelled = null;
+                return;
+            }
+            if (shouldBeExpelled <= 0) throw new IncorrectValueException();
+            this.shouldBeExpelled = shouldBeExpelled;
+        } catch (IncorrectValueException e) {
+            ConsoleManager.printError("Number of shouldBeExpelled has to be more than 0");
+            System.exit(0);
+        }
+
     }
 
     public Integer getShouldBeExpelled() {
@@ -95,17 +162,20 @@ public class StudyGroup {
     }
 
     public void setStudentsCount(int studentsCount) {
-        this.studentsCount = studentsCount;
+        try {
+            if (studentsCount <= 0) throw new IncorrectValueException();
+            this.studentsCount = studentsCount;
+        } catch (IncorrectValueException e) {
+            ConsoleManager.printError("StudentCount has to be more than 0");
+            System.exit(0);
+        }
+
     }
 
     public int getStudentsCount() {
         return studentsCount;
     }
 
-//    @Override
-//    public String toString() {
-//        return getId()+"\n"+getName()+"\n"+getCoordinates()+"\n"+getCreationDate()+"\n"+getStudentsCount()+"\n"+getShouldBeExpelled()+"\n"+getAverageMark()+"\n"+semesterEnum+"\n"+getGroupAdmin();
-//    }
 
     @Override
     public String toString() {
