@@ -34,6 +34,7 @@ public class RemoveByIdCommand extends Command {
             ConsoleManager.printError("Collection is empty");
         } catch (StudyGroupNullException e) {
             ConsoleManager.printError("No Study Group with that ID");
-        } return false;
+        }
+        return false;
     }
 }

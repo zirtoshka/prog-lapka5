@@ -8,6 +8,9 @@ import org.example.exceptions.NullCollectionException;
 
 public class PrintFieldDescendingSemesterCommand extends Command {
     private final CollectionManager collectionManager;
+    private final int FIRST = 0;
+    private final int SECOND = 1;
+    private final int FIFTH = 2;
 
     public PrintFieldDescendingSemesterCommand(CollectionManager collectionManager) {
         super("print_field_descending_semester_enum", "display the values of the semesterEnum field of all elements in descending order");
@@ -24,13 +27,13 @@ public class PrintFieldDescendingSemesterCommand extends Command {
             ) {
                 switch (sg.getSemesterEnum().name()) {
                     case "FIRST":
-                        count[0] += 1;
+                        count[FIRST] += 1;
                         break;
                     case "SECOND":
-                        count[1] += 1;
+                        count[SECOND] += 1;
                         break;
                     case "FIFTH":
-                        count[2] += 1;
+                        count[FIFTH] += 1;
                         break;
                 }
             }

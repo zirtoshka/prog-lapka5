@@ -2,9 +2,6 @@ package org.example.commands;
 
 import org.example.IO.ConsoleManager;
 import org.example.exceptions.ArgsException;
-import org.example.exceptions.IncorrectScriptException;
-
-import java.io.IOException;
 
 public class HelpCommand extends Command {
     public HelpCommand() {

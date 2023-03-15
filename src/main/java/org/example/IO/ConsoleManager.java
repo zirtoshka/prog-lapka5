@@ -1,6 +1,5 @@
 package org.example.IO;
 
-import org.example.commands.CommandEnum;
 import org.example.commands.FilterContainsNameCommand;
 import org.example.utilities.CommandManager;
 import org.example.utilities.HistoryWriter;

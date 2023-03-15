@@ -9,7 +9,7 @@ public class HistoryCommand extends Command {
     private final int numberOfCmd;
 
     public HistoryCommand(HistoryWriter historyWriter, int numberOfCmd) {
-        super("history", "View last 12 commands");
+        super("history", "View last " + numberOfCmd + " commands");
         this.historyWriter = historyWriter;
         this.numberOfCmd = numberOfCmd;
     }
@@ -19,7 +19,7 @@ public class HistoryCommand extends Command {
         try {
             if (!arg.isEmpty()) throw new ArgsException();
             String[] history = historyWriter.getHistory();
-            System.out.println("Last "+numberOfCmd+" commands:");
+            System.out.println("Last " + numberOfCmd + " commands:");
             for (String s : history) {
                 if (!(s == null)) {
                     ConsoleManager.printSuccess(s);

@@ -7,8 +7,6 @@ import org.example.description_for_collection.StudyGroup;
 import org.example.exceptions.ArgsException;
 import org.example.exceptions.BadScriptException;
 
-import java.io.IOException;
-
 public class AddCommand extends Command {
     private final CollectionManager collectionManager;
     private final ScannerManager scannerManager;

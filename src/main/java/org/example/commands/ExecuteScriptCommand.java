@@ -2,8 +2,6 @@ package org.example.commands;
 
 import org.example.IO.ConsoleManager;
 import org.example.exceptions.ArgsException;
-import org.example.exceptions.NotNullException;
-import org.example.exceptions.WrongNameException;
 
 public class ExecuteScriptCommand extends Command {
     public ExecuteScriptCommand() {

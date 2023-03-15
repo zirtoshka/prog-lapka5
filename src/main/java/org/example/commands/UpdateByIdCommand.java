@@ -41,8 +41,8 @@ public class UpdateByIdCommand extends Command {
             Semester semesterEnum = studyGroup.getSemesterEnum();
             Person groupAdmin = studyGroup.getGroupAdmin();
 
-            collectionManager.removeFromCollection(studyGroup);//метод ничего не делает с множеством поэтом idможно присвоить тот же и все будет норм
-            //id генерируются, поэтому будет колллекция, с новым id м
+            collectionManager.removeFromCollection(studyGroup);//метод ничего не делает с множеством поэтом id можно присвоить тот же и все будет норм
+            //id генерируются, поэтому будет колллекция, с новым id
             if (scannerManager.askQuestion("Change study group name?")) {
                 name = scannerManager.askGroupName();
             }
@@ -75,7 +75,7 @@ public class UpdateByIdCommand extends Command {
             ConsoleManager.printError("Collection is empty");
         } catch (StudyGroupNullException e) {
             ConsoleManager.printError("No such Study Group with that ID");
-        }catch (BadScriptException e){
+        } catch (BadScriptException e) {
             ConsoleManager.printError("Bad script");
         }
         return false;
