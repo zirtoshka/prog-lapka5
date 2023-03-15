@@ -2,7 +2,6 @@ package org.example.utilities;
 
 import org.example.IO.ConsoleManager;
 import org.example.description_for_collection.StudyGroup;
-import org.example.exceptions.NotNullException;
 import org.example.exceptions.NullCollectionException;
 
 import java.time.LocalDateTime;
@@ -80,7 +79,6 @@ public class CollectionManager {
             if(studyGroupCollection ==null) throw new NullCollectionException();
             return studyGroupCollection.size();
         } catch (NullCollectionException e){
-//            ConsoleManager.printError("Collection is empty");
             return Size_Empty;
         }
 
@@ -111,9 +109,6 @@ public class CollectionManager {
     }
 
     public StudyGroup getById(Integer id) {
-//        try {
-//            if(studyGroupCollection.isEmpty()) throw new NullCollectionException();
-//        }
         for (StudyGroup studyGroup : studyGroupCollection) {
             if (studyGroup.getId().equals(id)) {
                 return studyGroup;

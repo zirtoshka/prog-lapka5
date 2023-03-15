@@ -36,7 +36,7 @@ public class FileManager {
             if (path.isEmpty()) throw new NotNullException();
             studyGroupCollection = yaml.read(path);
         } catch (NotNullException e) {
-            ConsoleManager.printError("can't be empty");
+            ConsoleManager.printError("Can't be empty");
             System.exit(0);
         }catch (IOException | NullPointerException e){
             ConsoleManager.printError("No access");
