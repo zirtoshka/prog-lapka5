@@ -12,9 +12,10 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
+import static org.example.description_for_collection.Coordinates.MAX_X;
+import static org.example.description_for_collection.Coordinates.MIN_Y;
+
 public class ScannerManager {
-    private final Double MAX_X = 576D;
-    private final Float MIN_Y = -596F;
     private boolean filemode;
     public static final Pattern patternSymbols = Pattern.compile("\\w*");
     public static final Pattern patternNumber = Pattern.compile("(-?)\\d+(.\\d+)?");

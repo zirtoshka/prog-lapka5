@@ -5,10 +5,9 @@ import org.example.exceptions.IncorrectValueException;
 import org.example.exceptions.NotNullException;
 
 public class Coordinates {
-
     private Double coordinatesX; //Максимальное значение поля: 576, Поле не может быть null
-    private static final Double MAX_X = 576D;
-    private static final Float MIN_Y = -596F;
+    public static final Double MAX_X = 576D;
+    public static final Float MIN_Y = -596F;
     private Float coordinatesY; //Значение поля должно быть больше -596, Поле не может быть null
 
 
