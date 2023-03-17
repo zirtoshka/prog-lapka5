@@ -1,8 +1,8 @@
 package org.example.IO;
 
 import org.example.Main;
-import org.example.description_for_collection.*;
-import org.example.exceptions.BadScriptException;
+import org.example.data.*;
+import org.example.exceptions.IncorrectScriptException;
 import org.example.exceptions.IncorrectValueException;
 import org.example.exceptions.NotNullException;
 import org.example.exceptions.WrongNameException;
@@ -12,8 +12,8 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-import static org.example.description_for_collection.Coordinates.MAX_X;
-import static org.example.description_for_collection.Coordinates.MIN_Y;
+import static org.example.data.Coordinates.MAX_X;
+import static org.example.data.Coordinates.MIN_Y;
 
 public class ScannerManager {
     private boolean filemode;
@@ -26,7 +26,7 @@ public class ScannerManager {
         this.scanner = scanner;
     }
 
-    public String askName(String inputTitle, String typeOfName) throws BadScriptException {
+    public String askName(String inputTitle, String typeOfName) throws IncorrectScriptException {
         String name;
         while (true) {
             try {
@@ -39,29 +39,29 @@ public class ScannerManager {
                 break;
             } catch (NotNullException e) {
                 ConsoleManager.printError(String.format("%s can't be empty!!!", typeOfName));
-                if (filemode) throw new BadScriptException();
+                if (filemode) throw new IncorrectScriptException();
             } catch (WrongNameException e) {
                 ConsoleManager.printError("I can parse only char symbol! (letters, numbers and '_')");
-                if (filemode) throw new BadScriptException();
+                if (filemode) throw new IncorrectScriptException();
             } catch (NoSuchElementException e) {
                 ConsoleManager.printError("Name is ctrl+D. ok, bye");
-                if (filemode) throw new BadScriptException();
+                if (filemode) throw new IncorrectScriptException();
                 System.exit(0);
             }
         }
         return name;
     }
 
-    public String askGroupName() throws BadScriptException {
+    public String askGroupName() throws IncorrectScriptException {
         return askName("Enter Study Group name", "Study Group name");
     }
 
-    public String askPersonName() throws BadScriptException {
+    public String askPersonName() throws IncorrectScriptException {
         return askName("Enter Admin name:", "Person name");
     }
 
 
-    public Double askCoordinatesX() throws BadScriptException {
+    public Double askCoordinatesX() throws IncorrectScriptException {
         String userX;
         Double x;
         while (true) {
@@ -76,19 +76,19 @@ public class ScannerManager {
                 break;
             } catch (NumberFormatException e) {
                 ConsoleManager.printError("Given String is not parsable to Double");
-                if (filemode) throw new BadScriptException();
+                if (filemode) throw new IncorrectScriptException();
             } catch (NotNullException e) {
                 ConsoleManager.printError("It can't be empty!!!");
-                if (filemode) throw new BadScriptException();
+                if (filemode) throw new IncorrectScriptException();
             } catch (WrongNameException e) {
                 ConsoleManager.printError("hmm.. You use symbols not for numbers... why?");
-                if (filemode) throw new BadScriptException();
+                if (filemode) throw new IncorrectScriptException();
             } catch (IncorrectValueException e) {
                 ConsoleManager.printError("This value has to be less than " + MAX_X);
-                if (filemode) throw new BadScriptException();
+                if (filemode) throw new IncorrectScriptException();
             } catch (NoSuchElementException e) {
                 ConsoleManager.printError("X is ctrl+D. ok, bye");
-                if (filemode) throw new BadScriptException();
+                if (filemode) throw new IncorrectScriptException();
                 System.exit(0);
             }
         }
@@ -96,7 +96,7 @@ public class ScannerManager {
 
     }
 
-    public Float askCoordinatesY() throws BadScriptException {
+    public Float askCoordinatesY() throws IncorrectScriptException {
         String userY;
         Float y;
         while (true) {
@@ -111,19 +111,19 @@ public class ScannerManager {
                 break;
             } catch (NumberFormatException e) {
                 ConsoleManager.printError("Given String is not parsable to Float");
-                if (filemode) throw new BadScriptException();
+                if (filemode) throw new IncorrectScriptException();
             } catch (NotNullException e) {
                 ConsoleManager.printError("It can't be empty!!!");
-                if (filemode) throw new BadScriptException();
+                if (filemode) throw new IncorrectScriptException();
             } catch (WrongNameException e) {
                 ConsoleManager.printError("hmm.. You use symbols not for numbers... why?");
-                if (filemode) throw new BadScriptException();
+                if (filemode) throw new IncorrectScriptException();
             } catch (IncorrectValueException e) {
                 ConsoleManager.printError("This value has to be more than " + MIN_Y);
-                if (filemode) throw new BadScriptException();
+                if (filemode) throw new IncorrectScriptException();
             } catch (NoSuchElementException e) {
                 ConsoleManager.printError("Y is ctrl+D. ok, bye");
-                if (filemode) throw new BadScriptException();
+                if (filemode) throw new IncorrectScriptException();
                 System.exit(0);
             }
 
@@ -131,14 +131,14 @@ public class ScannerManager {
         return y;
     }
 
-    public Coordinates askCoordinates() throws BadScriptException {
+    public Coordinates askCoordinates() throws IncorrectScriptException {
         Double x = askCoordinatesX();
         Float y = askCoordinatesY();
         return new Coordinates(x, y);
 
     }
 
-    public int askStudentCount() throws BadScriptException, NumberFormatException {
+    public int askStudentCount() throws IncorrectScriptException, NumberFormatException {
         String userCount;
         int count;
         while (true) {
@@ -152,22 +152,22 @@ public class ScannerManager {
                 break;
             } catch (NotNullException e) {
                 ConsoleManager.printError("Are you sure it could be the number of students??");
-                if (filemode) throw new BadScriptException();
+                if (filemode) throw new IncorrectScriptException();
             } catch (IncorrectValueException e) {
                 ConsoleManager.printError("Are you sure it could be the number of students??");
-                if (filemode) throw new BadScriptException();
+                if (filemode) throw new IncorrectScriptException();
             } catch (NumberFormatException e) {
                 ConsoleManager.printError("Given String is not parsable to int");
             } catch (NoSuchElementException e) {
                 ConsoleManager.printError("The number of students is ctrl+D. ok, bye");
-                if (filemode) throw new BadScriptException();
+                if (filemode) throw new IncorrectScriptException();
                 System.exit(0);
             }
         }
         return count;
     }
 
-    public Integer askShouldBeExpelled() throws BadScriptException, NumberFormatException {
+    public Integer askShouldBeExpelled() throws IncorrectScriptException, NumberFormatException {
         String userCountExpelled;
         Integer countExpelled;
         while (true) {
@@ -183,20 +183,20 @@ public class ScannerManager {
                 return null;
             } catch (IncorrectValueException e) {
                 ConsoleManager.printError("It has to be more than 0");
-                if (filemode) throw new BadScriptException();
+                if (filemode) throw new IncorrectScriptException();
             } catch (NumberFormatException e) {
                 ConsoleManager.printError("Given String is not parsable to Integer");
-                if (filemode) throw new BadScriptException();
+                if (filemode) throw new IncorrectScriptException();
             } catch (NoSuchElementException e) {
                 ConsoleManager.printError("The number of students to be expelled is ctrl+D. ok, bye");
-                if (filemode) throw new BadScriptException();
+                if (filemode) throw new IncorrectScriptException();
                 System.exit(0);
             }
         }
         return countExpelled;
     }
 
-    public double askAverageMark() throws BadScriptException {
+    public double askAverageMark() throws IncorrectScriptException {
         String userMark;
         double countMark;
         while (true) {
@@ -209,20 +209,20 @@ public class ScannerManager {
                 break;
             } catch (IncorrectValueException e) {
                 ConsoleManager.printError("It has to be more than 0");
-                if (filemode) throw new BadScriptException();
+                if (filemode) throw new IncorrectScriptException();
             } catch (NumberFormatException e) {
                 ConsoleManager.printError("Given String is not parsable to double");
-                if (filemode) throw new BadScriptException();
+                if (filemode) throw new IncorrectScriptException();
             } catch (NoSuchElementException e) {
                 ConsoleManager.printError("Average mark is ctrl+D. ok, bye");
-                if (filemode) throw new BadScriptException();
+                if (filemode) throw new IncorrectScriptException();
                 System.exit(0);
             }
         }
         return countMark;
     }
 
-    public Semester askSemesterEnum() throws BadScriptException {
+    public Semester askSemesterEnum() throws IncorrectScriptException {
         String userSemester;
         Semester semester;
         while (true) {
@@ -236,27 +236,27 @@ public class ScannerManager {
                 break;
             } catch (NotNullException e) {
                 ConsoleManager.printError("It can't be empty!!");
-                if (filemode) throw new BadScriptException();
+                if (filemode) throw new IncorrectScriptException();
             } catch (IllegalArgumentException e) {
                 ConsoleManager.printError("I don't know this semester(");
-                if (filemode) throw new BadScriptException();
+                if (filemode) throw new IncorrectScriptException();
             } catch (NoSuchElementException e) {
                 ConsoleManager.printError("Semester is ctrl+D. ok, bye");
-                if (filemode) throw new BadScriptException();
+                if (filemode) throw new IncorrectScriptException();
                 System.exit(0);
             }
         }
         return semester;
     }
 
-    public Person askPerson() throws BadScriptException {
+    public Person askPerson() throws IncorrectScriptException {
         if (askQuestion("Is there an admin?")) {
             return new Person(askPersonName(), askBirthday(), askEyeColor(), askHairColor(), askNationality());
         }
         return null;
     }
 
-    public Date askBirthday() throws BadScriptException {
+    public Date askBirthday() throws IncorrectScriptException {
         String userDate;
         Date date;
         while (true) {
@@ -272,10 +272,10 @@ public class ScannerManager {
                 return null;
             } catch (IllegalArgumentException e) {
                 ConsoleManager.printError("You use a very strange format");
-                if (filemode) throw new BadScriptException();
+                if (filemode) throw new IncorrectScriptException();
             } catch (NoSuchElementException e) {
                 ConsoleManager.printError("Birthday is ctrl+D. ok, bye");
-                if (filemode) throw new BadScriptException();
+                if (filemode) throw new IncorrectScriptException();
                 System.exit(0);
             }
         }
@@ -283,7 +283,7 @@ public class ScannerManager {
         return date;
     }
 
-    public ColorEye askEyeColor() throws BadScriptException {
+    public ColorEye askEyeColor() throws IncorrectScriptException {
         String userEyeColor;
         ColorEye colorEye;
         while (true) {
@@ -297,20 +297,20 @@ public class ScannerManager {
                 break;
             } catch (NotNullException e) {
                 ConsoleManager.printError("It can't be empty!!");
-                if (filemode) throw new BadScriptException();
+                if (filemode) throw new IncorrectScriptException();
             } catch (IllegalArgumentException e) {
                 ConsoleManager.printError("I don't know this eye color(");
-                if (filemode) throw new BadScriptException();
+                if (filemode) throw new IncorrectScriptException();
             } catch (NoSuchElementException e) {
                 ConsoleManager.printError("Color is ctrl+D. ok, bye");
-                if (filemode) throw new BadScriptException();
+                if (filemode) throw new IncorrectScriptException();
                 System.exit(0);
             }
         }
         return colorEye;
     }
 
-    public ColorHair askHairColor() throws BadScriptException {
+    public ColorHair askHairColor() throws IncorrectScriptException {
         String userHairColor;
         ColorHair colorHair;
         while (true) {
@@ -326,17 +326,17 @@ public class ScannerManager {
                 return null;
             } catch (IllegalArgumentException e) {
                 ConsoleManager.printError("I don't know this hair color(");
-                if (filemode) throw new BadScriptException();
+                if (filemode) throw new IncorrectScriptException();
             } catch (NoSuchElementException e) {
                 ConsoleManager.printError("Color is ctrl+D. ok, bye");
-                if (filemode) throw new BadScriptException();
+                if (filemode) throw new IncorrectScriptException();
                 System.exit(0);
             }
         }
         return colorHair;
     }
 
-    public Country askNationality() throws BadScriptException {
+    public Country askNationality() throws IncorrectScriptException {
         String userCountry;
         Country country;
         while (true) {
@@ -352,17 +352,17 @@ public class ScannerManager {
                 return null;
             } catch (IllegalArgumentException e) {
                 ConsoleManager.printError("I don't know this nationality(");
-                if (filemode) throw new BadScriptException();
+                if (filemode) throw new IncorrectScriptException();
             } catch (NoSuchElementException e) {
                 ConsoleManager.printError("Country is ctrl+D. ok, bye");
-                if (filemode) throw new BadScriptException();
+                if (filemode) throw new IncorrectScriptException();
                 System.exit(0);
             }
         }
         return country;
     }
 
-    public boolean askQuestion(String question) throws BadScriptException {
+    public boolean askQuestion(String question) throws IncorrectScriptException {
         String finalQuestion = question + " (+/-):";
         String answer;
         while (true) {
@@ -375,13 +375,13 @@ public class ScannerManager {
                 break;
             } catch (NotNullException e) {
                 ConsoleManager.printError("I know that silence is golden. But what should I do with it? I only understand + and -");
-                if (filemode) throw new BadScriptException();
+                if (filemode) throw new IncorrectScriptException();
             } catch (IncorrectValueException e) {
                 ConsoleManager.printError("I believed that you are a smart person and able to distinguish other characters from +/-");
-                if (filemode) throw new BadScriptException();
+                if (filemode) throw new IncorrectScriptException();
             } catch (NoSuchElementException e) {
                 ConsoleManager.printError("Answer is ctrl+D. ok, bye");
-                if (filemode) throw new BadScriptException();
+                if (filemode) throw new IncorrectScriptException();
                 System.exit(0);
             }
         }

@@ -1,14 +1,14 @@
 package org.example.commands;
 
+import org.example.exceptions.IncorrectScriptException;
 import org.example.utilities.CollectionManager;
 import org.example.IO.ConsoleManager;
 import org.example.IO.ScannerManager;
-import org.example.description_for_collection.Coordinates;
-import org.example.description_for_collection.Person;
-import org.example.description_for_collection.Semester;
-import org.example.description_for_collection.StudyGroup;
+import org.example.data.Coordinates;
+import org.example.data.Person;
+import org.example.data.Semester;
+import org.example.data.StudyGroup;
 import org.example.exceptions.ArgsException;
-import org.example.exceptions.BadScriptException;
 import org.example.exceptions.NullCollectionException;
 import org.example.exceptions.StudyGroupNullException;
 
@@ -75,8 +75,8 @@ public class UpdateByIdCommand extends Command {
             ConsoleManager.printError("Collection is empty");
         } catch (StudyGroupNullException e) {
             ConsoleManager.printError("No such Study Group with that ID");
-        } catch (BadScriptException e) {
-            ConsoleManager.printError("Bad script");
+        }catch (IncorrectScriptException e){
+            ConsoleManager.printError("Script is in correct in cmd update_by_id");
         }
         return false;
     }

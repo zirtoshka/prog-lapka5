@@ -1,10 +1,10 @@
 package org.example.utilities;
 
 import org.example.IO.ConsoleManager;
-import org.example.description_for_collection.StudyGroup;
+import org.example.data.StudyGroup;
 import org.example.exceptions.NotNullException;
-import org.example.parser_YAML.ReadYAMLParser;
-import org.example.parser_YAML.WriteYAMLParses;
+import org.example.parser.ReadYAMLParser;
+import org.example.parser.WriteYAMLParses;
 
 
 import java.io.File;
@@ -33,13 +33,9 @@ public class FileManager {
         ReadYAMLParser yaml = new ReadYAMLParser();
         ArrayDeque<StudyGroup> studyGroupCollection = null;
         try {
-            if (path.isEmpty()) throw new NotNullException();
             studyGroupCollection = yaml.read(path);
-        } catch (NotNullException e) {
-            ConsoleManager.printError("Can't be empty");
-            System.exit(0);
-        }catch (IOException | NullPointerException e){
-            ConsoleManager.printError("No access");
+        }catch (IOException e){
+            ConsoleManager.printError("No access to load from file");
             System.exit(0);
         }
         return studyGroupCollection;
@@ -50,11 +46,9 @@ public class FileManager {
             WriteYAMLParses writeYAMLParses = new WriteYAMLParses();
             writeYAMLParses.write(studyGroupCollection,path);
         } catch (NotNullException | IOException e){
-            ConsoleManager.printError("No access");
-            System.exit(0);
+            ConsoleManager.printError("No access to write");
         }
         }
-
     }
 
 

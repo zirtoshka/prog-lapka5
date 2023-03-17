@@ -1,4 +1,4 @@
-package org.example.description_for_collection;
+package org.example.data;
 
 import org.example.IO.ConsoleManager;
 import org.example.exceptions.IncorrectValueException;

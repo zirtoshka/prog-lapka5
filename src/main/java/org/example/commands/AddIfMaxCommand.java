@@ -1,11 +1,11 @@
 package org.example.commands;
 
+import org.example.exceptions.IncorrectScriptException;
 import org.example.utilities.CollectionManager;
 import org.example.IO.ConsoleManager;
 import org.example.IO.ScannerManager;
-import org.example.description_for_collection.StudyGroup;
+import org.example.data.StudyGroup;
 import org.example.exceptions.ArgsException;
-import org.example.exceptions.BadScriptException;
 import org.example.exceptions.NullCollectionException;
 
 public class AddIfMaxCommand extends Command {
@@ -44,8 +44,8 @@ public class AddIfMaxCommand extends Command {
             ConsoleManager.printError("Usage: '" + getName() + "'");
         } catch (NullCollectionException e) {
             ConsoleManager.printError("Collection is empty");
-        } catch (BadScriptException e) {
-            ConsoleManager.printError("Bad script");
+        }catch (IncorrectScriptException e){
+            ConsoleManager.printError("Script is incorrect in add_if_max cmd");
         }
         return false;
     }

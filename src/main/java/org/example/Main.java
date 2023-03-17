@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class Main {
     public static final String INPUT_COMMAND = "$ ";
     public static final String INPUT_INFO = "> ";
-    public static final int numberOfCmd = 12;
+    public static final int NUMBER_OF_CMD = 12;
 
     public static void main(String[] args) throws IOException, ArrayIndexOutOfBoundsException {
         Scanner userScanner = new Scanner(System.in);
@@ -34,7 +34,7 @@ public class Main {
                     new AddCommand(collectionManager, scannerManager), new UpdateByIdCommand(collectionManager, scannerManager),
                     new RemoveByIdCommand(collectionManager), new ClearCommand(collectionManager), new SaveCommand(collectionManager),
                     new ExecuteScriptCommand(), new ExitCommand(), new HeadCommand(collectionManager), new AddIfMaxCommand(collectionManager, scannerManager),
-                    new HistoryCommand(historyWriter, numberOfCmd), new FilterContainsNameCommand(collectionManager), new PrintUniqueGroupAdminCommand(collectionManager),
+                    new HistoryCommand(historyWriter, NUMBER_OF_CMD), new FilterContainsNameCommand(collectionManager), new PrintUniqueGroupAdminCommand(collectionManager),
                     new PrintFieldDescendingSemesterCommand(collectionManager));
             ConsoleManager consoleManager = new ConsoleManager(commandManager, scannerManager, userScanner, historyWriter);
             consoleManager.toStartMode();

@@ -6,7 +6,7 @@ public class HistoryWriter {
     private String[] history;
 
     public HistoryWriter() {
-        this.history = new String[Main.numberOfCmd];
+        this.history = new String[Main.NUMBER_OF_CMD];
     }
 
     public String[] getHistory() {
@@ -14,9 +14,9 @@ public class HistoryWriter {
     }
 
     public void addInHistory(String newCommand) {
-        for (int i = 0; i < Main.numberOfCmd-1; i++) {
+        for (int i = 0; i < Main.NUMBER_OF_CMD -1; i++) {
             history[i] = history[i + 1];
         }
-        history[Main.numberOfCmd-1] = newCommand;
+        history[Main.NUMBER_OF_CMD -1] = newCommand;
     }
 }

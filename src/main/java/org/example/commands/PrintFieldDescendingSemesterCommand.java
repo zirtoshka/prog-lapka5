@@ -2,7 +2,7 @@ package org.example.commands;
 
 import org.example.utilities.CollectionManager;
 import org.example.IO.ConsoleManager;
-import org.example.description_for_collection.StudyGroup;
+import org.example.data.StudyGroup;
 import org.example.exceptions.ArgsException;
 import org.example.exceptions.NullCollectionException;
 

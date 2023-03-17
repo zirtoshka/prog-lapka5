@@ -1,7 +1,7 @@
 package org.example.utilities;
 
 import org.example.IO.ConsoleManager;
-import org.example.description_for_collection.StudyGroup;
+import org.example.data.StudyGroup;
 import org.example.exceptions.NullCollectionException;
 
 import java.time.LocalDateTime;
@@ -14,8 +14,8 @@ public class CollectionManager {
     private Set<Integer> idSet = new HashSet<>();
 
     private Integer newId = 1;
-    private final int Size_Empty=0;
-    private final String Empty_Collection= "empty";
+    private final int SIZE_EMPTY =0;
+    private final String EMPTY_COLLECTION = "empty";
     private final FileManager fileManager;
 
     private java.time.LocalDateTime lastInitTime;
@@ -72,7 +72,7 @@ public class CollectionManager {
         } catch (NullCollectionException e){
             ConsoleManager.printError("Collection is empty");
         }
-        return Empty_Collection;
+        return EMPTY_COLLECTION;
     }
 
     public int collectionSize() {
@@ -80,7 +80,7 @@ public class CollectionManager {
             if(studyGroupCollection ==null) throw new NullCollectionException();
             return studyGroupCollection.size();
         } catch (NullCollectionException e){
-            return Size_Empty;
+            return SIZE_EMPTY;
         }
 
     }
@@ -106,7 +106,7 @@ public class CollectionManager {
         }catch (NullCollectionException e){
             ConsoleManager.printError("Collection is empty");
         }
-        return Empty_Collection;
+        return EMPTY_COLLECTION;
     }
 
     public StudyGroup getById(Integer id) {

@@ -1,8 +1,8 @@
-package org.example.parser_YAML;
+package org.example.parser;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
-import org.example.description_for_collection.StudyGroup;
+import org.example.data.StudyGroup;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 

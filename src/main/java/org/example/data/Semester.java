@@ -1,4 +1,4 @@
-package org.example.description_for_collection;
+package org.example.data;
 
 public enum Semester {
     FIRST("FIRST"),
