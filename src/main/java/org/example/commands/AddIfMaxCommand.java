@@ -1,6 +1,7 @@
 package org.example.commands;
 
 import org.example.exceptions.IncorrectScriptException;
+import org.example.exceptions.IncorrectValuesForGroupException;
 import org.example.utilities.CollectionManager;
 import org.example.IO.ConsoleManager;
 import org.example.IO.ScannerManager;
@@ -44,7 +45,7 @@ public class AddIfMaxCommand extends Command {
             ConsoleManager.printError("Usage: '" + getName() + "'");
         } catch (NullCollectionException e) {
             ConsoleManager.printError("Collection is empty");
-        }catch (IncorrectScriptException e){
+        }catch (IncorrectScriptException | IncorrectValuesForGroupException e){
             ConsoleManager.printError("Script is incorrect in add_if_max cmd");
         }
         return false;

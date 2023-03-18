@@ -3,7 +3,8 @@ package org.example.data;
 public enum Country {
     VATICAN("VATICAN"),
     THAILAND("THAILAND"),
-    NORTH_KOREA("NORTH_KOREA");
+    NORTH_KOREA("NORTH_KOREA"),
+    DEFAULT_COUNTRY("default country");
     private final String country;
 
     Country(String country) {
@@ -13,7 +14,9 @@ public enum Country {
     public static String getList() {
         StringBuilder types = new StringBuilder();
         for (Country type : values()) {
-            types.append(type.name()).append("; ");
+            if (!type.equals(DEFAULT_COUNTRY)) {
+                types.append(type.name()).append("; ");
+            }
         }
         return types.substring(0, types.length() - 2);
     }

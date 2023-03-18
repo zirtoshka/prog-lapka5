@@ -2,10 +2,7 @@ package org.example.IO;
 
 import org.example.Main;
 import org.example.data.*;
-import org.example.exceptions.IncorrectScriptException;
-import org.example.exceptions.IncorrectValueException;
-import org.example.exceptions.NotNullException;
-import org.example.exceptions.WrongNameException;
+import org.example.exceptions.*;
 
 import java.util.Date;
 import java.util.NoSuchElementException;
@@ -132,10 +129,17 @@ public class ScannerManager {
     }
 
     public Coordinates askCoordinates() throws IncorrectScriptException {
-        Double x = askCoordinatesX();
-        Float y = askCoordinatesY();
-        return new Coordinates(x, y);
-
+        try {
+            Double x = askCoordinatesX();
+            Float y = askCoordinatesY();
+            Coordinates userCoordinates = new Coordinates();
+            userCoordinates.setX(x);
+            userCoordinates.setY(y);
+            return userCoordinates;
+        } catch (IncorrectValuesForGroupException e){
+            ConsoleManager.printError(e);
+            return null;
+        }
     }
 
     public int askStudentCount() throws IncorrectScriptException, NumberFormatException {

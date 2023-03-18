@@ -3,9 +3,11 @@ package org.example.data;
 
 import org.example.IO.ConsoleManager;
 import org.example.exceptions.IncorrectValueException;
+import org.example.exceptions.IncorrectValuesForGroupException;
 import org.example.exceptions.NotNullException;
 import org.example.exceptions.WrongNameException;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -16,19 +18,43 @@ public class StudyGroup {
     // Значение поля должно быть больше 0,
     // Значение этого поля должно быть уникальным,
     // Значение этого поля должно генерироваться автоматически
+    private final Integer defaultId = 1;
+    public static final Integer wrongId = -1;
     private String name; //Поле не может быть null, Строка не может быть пустой
+    private final String defaultName = "default_name";
     private Coordinates coordinates; //Поле не может быть null
+    private final Coordinates defaultCoordinates = new Coordinates();
     private java.time.LocalDateTime creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
+    private final LocalDateTime defaultCreationDate = LocalDateTime.now();
     private int studentsCount; //Значение поля должно быть больше 0
+    private int DEFAULT_STUDENT_COUNT = 1;
     private Integer shouldBeExpelled; //Значение поля должно быть больше 0, Поле может быть null
+    private final Integer defaultShouldBeExpelled = null;
     private double averageMark; //Значение поля должно быть больше 0
+    private double DEFAULT_AVERAGE_MARK = 1;
     private Semester semesterEnum; //Поле не может быть null
+    private final Semester defaultSemesterEnum = Semester.DEFAULT_SEMESTER;
     private Person groupAdmin; //Поле может быть null
+    private Person defaultPerson = new Person();
 
-    public StudyGroup() {
+    public StudyGroup() throws IncorrectValuesForGroupException {
+        try {
+            this.setId(defaultId);
+            this.setName(defaultName);
+            this.setCoordinates(defaultCoordinates);
+            this.setCreationDate(defaultCreationDate);
+            this.setStudentsCount(DEFAULT_STUDENT_COUNT);
+            this.setShouldBeExpelled(defaultShouldBeExpelled);
+            this.setAverageMark(DEFAULT_AVERAGE_MARK);
+            this.setSemesterEnum(defaultSemesterEnum);
+            this.setGroupAdmin(defaultPerson);
+        } catch (IncorrectValuesForGroupException e){
+            this.id=wrongId;
+        }
+
     }
 
-    public StudyGroup(Integer id, String name, Coordinates coordinates, java.time.LocalDateTime creationDate, int studentsCount, Integer shouldBeExpelled, double averageMark, Semester semesterEnum, Person groupAdmin) {
+    public StudyGroup(Integer id, String name, Coordinates coordinates, java.time.LocalDateTime creationDate, int studentsCount, Integer shouldBeExpelled, double averageMark, Semester semesterEnum, Person groupAdmin) throws IncorrectValuesForGroupException {
         this.id = id;
         this.name = name;
         this.coordinates = coordinates;
@@ -46,11 +72,14 @@ public class StudyGroup {
             if (!patternSymbols.matcher(name).matches()) throw new WrongNameException();
             this.name = name;
         } catch (NotNullException e) {
-            ConsoleManager.printError("Name group can't be empty, bye");
-            System.exit(0);
+            ConsoleManager.printError("Name group can't be empty, so I can't add the group in collection");
+            this.name = defaultName;
+            this.id = wrongId;
+
         } catch (WrongNameException e) {
-            ConsoleManager.printError("I can parse only char symbol! (letters, numbers and '_')");
-            System.exit(0);
+            ConsoleManager.printError("I can parse only char symbol! (letters, numbers and '_'), so I can't add the group in collection");
+            this.name = defaultName;
+            this.id = wrongId;
         }
     }
 
@@ -64,11 +93,11 @@ public class StudyGroup {
             if (id <= 0) throw new IncorrectValueException();
             this.id = id;
         } catch (NotNullException e) {
-            ConsoleManager.printError("ID can't be null");
-            System.exit(0);
+            ConsoleManager.printError("ID can't be null, so I can't add the group in collection");
+            this.id=wrongId;
         } catch (IncorrectValueException e) {
-            ConsoleManager.printError("ID has incorrect value");
-            System.exit(0);
+            ConsoleManager.printError("ID has incorrect value, so I can't add the group in collection");
+           this.id=wrongId;
         }
 
     }
@@ -82,10 +111,11 @@ public class StudyGroup {
             if (averageMark <= 0) throw new IncorrectValueException();
             this.averageMark = averageMark;
         } catch (IncorrectValueException e) {
-            ConsoleManager.printError("Mark has to be more than 0");
-            System.exit(0);
+            ConsoleManager.printError("Mark has to be more than 0, so I can't add the group in collection");
+            this.averageMark=DEFAULT_AVERAGE_MARK;
+            this.id=wrongId;
         } catch (NumberFormatException e) {
-            ConsoleManager.printError("Given String is not parsable to double");
+            ConsoleManager.printError("Given String is not parsable to double, so I can't add the group in collection");
             System.exit(0);
         }
     }
@@ -94,8 +124,8 @@ public class StudyGroup {
         return averageMark;
     }
 
-    public void setCoordinates(Coordinates coordinates) {
-        this.coordinates=new Coordinates();
+    public void setCoordinates(Coordinates coordinates) throws IncorrectValuesForGroupException{
+        this.coordinates = new Coordinates();
         this.coordinates.setX(coordinates.getCoordinatesX());
         this.coordinates.setY(coordinates.getCoordinatesY());
     }
@@ -105,7 +135,14 @@ public class StudyGroup {
     }
 
     public void setCreationDate(LocalDateTime creationDate) {
-        this.creationDate = creationDate;
+        try {
+            this.creationDate = creationDate;
+        } catch (RuntimeException e){
+            System.out.println(e);
+            this.creationDate=defaultCreationDate;
+            this.id=wrongId;
+        }
+
     }
 
     public LocalDateTime getCreationDate() {
@@ -125,11 +162,13 @@ public class StudyGroup {
             if (semesterEnum == null) throw new NotNullException();
             this.semesterEnum = semesterEnum;
         } catch (NotNullException e) {
-            ConsoleManager.printError("Semester can't be empty");
-            System.exit(0);
+            ConsoleManager.printError("Semester can't be empty, so I can't add the group in collection");
+            this.semesterEnum=defaultSemesterEnum;
+            this.id=wrongId;
         } catch (IllegalArgumentException e) {
-            ConsoleManager.printError("Hmm.. I don't know this semester");
-            System.exit(0);
+            ConsoleManager.printError("Hmm.. I don't know this semester, so I can't add the group in collection");
+            this.semesterEnum=semesterEnum;
+            this.id=wrongId;
         }
 
     }
@@ -148,7 +187,8 @@ public class StudyGroup {
             this.shouldBeExpelled = shouldBeExpelled;
         } catch (IncorrectValueException e) {
             ConsoleManager.printError("Number of shouldBeExpelled has to be more than 0");
-            System.exit(0);
+            this.shouldBeExpelled=defaultShouldBeExpelled;
+            this.id=wrongId;
         }
 
     }
@@ -162,8 +202,9 @@ public class StudyGroup {
             if (studentsCount <= 0) throw new IncorrectValueException();
             this.studentsCount = studentsCount;
         } catch (IncorrectValueException e) {
-            ConsoleManager.printError("StudentCount has to be more than 0");
-            System.exit(0);
+            ConsoleManager.printError("StudentCount has to be more than 0, so I can't add the group in collection");
+            this.studentsCount=DEFAULT_STUDENT_COUNT;
+            this.id=wrongId;
         }
 
     }

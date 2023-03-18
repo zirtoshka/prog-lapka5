@@ -1,6 +1,7 @@
 package org.example.commands;
 
 import org.example.exceptions.IncorrectScriptException;
+import org.example.exceptions.IncorrectValuesForGroupException;
 import org.example.utilities.CollectionManager;
 import org.example.IO.ConsoleManager;
 import org.example.IO.ScannerManager;
@@ -35,7 +36,7 @@ public class AddCommand extends Command {
             return true;
         } catch (ArgsException e) {
             ConsoleManager.printError("Usage: '" + getName() + "'");
-        } catch (IncorrectScriptException e) {
+        } catch (IncorrectScriptException | IncorrectValuesForGroupException e) {
             ConsoleManager.printError("Script is incorrect in add cmd");
         }
         return false;

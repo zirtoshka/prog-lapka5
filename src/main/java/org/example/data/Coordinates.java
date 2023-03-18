@@ -2,6 +2,7 @@ package org.example.data;
 
 import org.example.IO.ConsoleManager;
 import org.example.exceptions.IncorrectValueException;
+import org.example.exceptions.IncorrectValuesForGroupException;
 import org.example.exceptions.NotNullException;
 
 public class Coordinates {
@@ -9,27 +10,31 @@ public class Coordinates {
     public static final Double MAX_X = 576D;
     public static final Float MIN_Y = -596F;
     private Float coordinatesY; //Значение поля должно быть больше -596, Поле не может быть null
+    private final Double defaultX = 0D;
+    private final Float defaultY = 0F;
 
-
-    public Coordinates() {
+    public Coordinates() throws IncorrectValuesForGroupException {
+        this.setX(defaultX);
+        this.setY(defaultY);
     }
 
-    public Coordinates(Double x, Float y)  {
+    public Coordinates(Double x, Float y) throws IncorrectValuesForGroupException {
         this.setX(x);
         this.setY(y);
     }
 
-    public void setX(Double coordinatesX) {
+    public void setX(Double coordinatesX) throws IncorrectValuesForGroupException {
         try {
             if (coordinatesX == null) throw new NotNullException();
             if (coordinatesX > MAX_X) throw new IncorrectValueException();
             this.coordinatesX = coordinatesX;
-        } catch (IncorrectValueException e ) {
-            ConsoleManager.printError("This value (x) has to be less than " + MAX_X);
-            System.exit(0);
+        } catch (IncorrectValueException e) {
+            ConsoleManager.printError("This value (x) has to be less than " + MAX_X+", so I can't add the group in collection");
+            this.coordinatesX=defaultX;
+            throw new IncorrectValuesForGroupException();
         } catch (NotNullException e) {
-            ConsoleManager.printError("X can't be null");
-            System.exit(0);
+            ConsoleManager.printError("X can't be null, so I can't add the group in collection");
+            throw new IncorrectValuesForGroupException();
         }
     }
 
@@ -37,17 +42,17 @@ public class Coordinates {
         return coordinatesX;
     }
 
-    public void setY(Float coordinatesY) {
+    public void setY(Float coordinatesY) throws IncorrectValuesForGroupException{
         try {
             if (coordinatesY == null) throw new NotNullException();
             if (coordinatesY < MIN_Y) throw new IncorrectValueException();
             this.coordinatesY = coordinatesY;
         } catch (IncorrectValueException e) {
-            ConsoleManager.printError("This value (y) has to be more than " + MIN_Y);
-            System.exit(0);
+            ConsoleManager.printError("This value (y) has to be more than " + MIN_Y+", so I can't add the group in collection");
+            throw new IncorrectValuesForGroupException();
         } catch (NotNullException e) {
-            ConsoleManager.printError("Y can't be null");
-            System.exit(0);
+            ConsoleManager.printError("Y can't be null, so I can't add the group in collection");
+            throw new IncorrectValuesForGroupException();
         }
     }
 

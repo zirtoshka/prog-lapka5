@@ -4,6 +4,7 @@ import org.example.IO.ConsoleManager;
 import org.example.data.StudyGroup;
 import org.example.exceptions.NullCollectionException;
 
+import java.io.FileNotFoundException;
 import java.time.LocalDateTime;
 import java.util.ArrayDeque;
 import java.util.HashSet;
@@ -14,7 +15,7 @@ public class CollectionManager {
     private Set<Integer> idSet = new HashSet<>();
 
     private Integer newId = 1;
-    private final int SIZE_EMPTY =0;
+    private final int SIZE_EMPTY = 0;
     private final String emptyCollection = "empty";
     private final FileManager fileManager;
 
@@ -27,14 +28,27 @@ public class CollectionManager {
         this.lastSaveTime = null;
         this.fileManager = fileManager;
     }
-    public void createCollection(){
-        this.studyGroupCollection=new ArrayDeque<StudyGroup>();
+
+    public void createCollection() {
+        this.studyGroupCollection = new ArrayDeque<StudyGroup>();
     }
+
     public void loadFromFile() {
-        this.studyGroupCollection = fileManager.loadFromFile();
-        for (StudyGroup stg : studyGroupCollection) {
-            idSet.add(stg.getId());
+        try {
+            this.studyGroupCollection = fileManager.loadFromFile();
+            if (collectionSize() != 0) {
+                for (StudyGroup stg : studyGroupCollection) {
+                    if (stg.getId() == StudyGroup.wrongId) {
+                        studyGroupCollection.remove(stg);
+                    } else {
+                        idSet.add(stg.getId());
+                    }
+                }
+            }
+        } catch (FileNotFoundException e) {
+            ConsoleManager.printError(e);
         }
+
     }
 
     public void writeToFile() {
@@ -67,9 +81,9 @@ public class CollectionManager {
 
     public String collectionType() {
         try {
-            if(studyGroupCollection.isEmpty()) throw new NullCollectionException();
+            if (studyGroupCollection.isEmpty()) throw new NullCollectionException();
             return studyGroupCollection.getClass().getName();
-        } catch (NullCollectionException e){
+        } catch (NullCollectionException e) {
             ConsoleManager.printError("Collection is empty");
         }
         return emptyCollection;
@@ -77,9 +91,9 @@ public class CollectionManager {
 
     public int collectionSize() {
         try {
-            if(studyGroupCollection ==null) throw new NullCollectionException();
+            if (studyGroupCollection == null) throw new NullCollectionException();
             return studyGroupCollection.size();
-        } catch (NullCollectionException e){
+        } catch (NullCollectionException e) {
             return SIZE_EMPTY;
         }
 
@@ -87,9 +101,9 @@ public class CollectionManager {
 
     public void clearCollection() {
         try {
-            if(studyGroupCollection ==null) throw new NullCollectionException();
+            if (studyGroupCollection == null) throw new NullCollectionException();
             studyGroupCollection.clear();
-        } catch (NullCollectionException e){
+        } catch (NullCollectionException e) {
         }
 
     }
@@ -101,9 +115,9 @@ public class CollectionManager {
 
     public String headOfCollection() {
         try {
-            if(studyGroupCollection.isEmpty()) throw new NullCollectionException();
+            if (studyGroupCollection.isEmpty()) throw new NullCollectionException();
             return studyGroupCollection.getFirst().toString();
-        }catch (NullCollectionException e){
+        } catch (NullCollectionException e) {
             ConsoleManager.printError("Collection is empty");
         }
         return emptyCollection;

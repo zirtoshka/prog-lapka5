@@ -8,7 +8,9 @@ import org.example.parser.WriteYAMLParses;
 
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayDeque;
 
 public class FileManager {
@@ -29,14 +31,17 @@ public class FileManager {
         File file = new File(path);
         return file.length() == 0;
     }
-    public ArrayDeque<StudyGroup> loadFromFile() {
+    public ArrayDeque<StudyGroup> loadFromFile() throws FileNotFoundException {
         ReadYAMLParser yaml = new ReadYAMLParser();
         ArrayDeque<StudyGroup> studyGroupCollection = null;
         try {
             studyGroupCollection = yaml.read(path);
         }catch (IOException e){
-            ConsoleManager.printError("No access to load from file");
-            System.exit(0);
+            ConsoleManager.printError("Unknown issues with file. Now it's clean and collection is empty");
+            System.out.println(e);
+            PrintWriter userFile = new PrintWriter(new File(path));
+            userFile.print("");
+            userFile.close();
         }
         return studyGroupCollection;
     }
