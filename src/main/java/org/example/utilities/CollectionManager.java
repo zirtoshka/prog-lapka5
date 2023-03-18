@@ -15,7 +15,7 @@ public class CollectionManager {
 
     private Integer newId = 1;
     private final int SIZE_EMPTY =0;
-    private final String EMPTY_COLLECTION = "empty";
+    private final String emptyCollection = "empty";
     private final FileManager fileManager;
 
     private java.time.LocalDateTime lastInitTime;
@@ -72,7 +72,7 @@ public class CollectionManager {
         } catch (NullCollectionException e){
             ConsoleManager.printError("Collection is empty");
         }
-        return EMPTY_COLLECTION;
+        return emptyCollection;
     }
 
     public int collectionSize() {
@@ -106,7 +106,7 @@ public class CollectionManager {
         }catch (NullCollectionException e){
             ConsoleManager.printError("Collection is empty");
         }
-        return EMPTY_COLLECTION;
+        return emptyCollection;
     }
 
     public StudyGroup getById(Integer id) {

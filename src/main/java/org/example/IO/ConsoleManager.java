@@ -189,7 +189,7 @@ public class ConsoleManager {
         int cmdStatus;
 
         do {
-            System.out.print(Main.INPUT_COMMAND);
+            System.out.print(Main.inputCommand);
             userCmd = (scanner.nextLine().trim() + " ").split(" ", 2);
             userCmd[ARG_CMD] = userCmd[ARG_CMD].trim();
             cmdStatus = launchCmd(userCmd);
@@ -219,7 +219,7 @@ public class ConsoleManager {
                     userCmd = (scriptScanner.nextLine().trim() + " ").split(" ", 2);
                     userCmd[ARG_CMD] = userCmd[ARG_CMD].trim();
                 }
-                System.out.println(Main.INPUT_COMMAND + String.join(" ", userCmd));
+                System.out.println(Main.inputCommand + String.join(" ", userCmd));
                 if (userCmd[NAME_CMD].equals(EXECUTE_SCRIPT)) {
                     for (String scri : script) {
                         if (userCmd[ARG_CMD].equals(scri)) throw new ScriptRecurentException();

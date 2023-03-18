@@ -31,7 +31,7 @@ public class ScannerManager {
         while (true) {
             try {
                 System.out.println(inputTitle);
-                System.out.print(Main.INPUT_INFO);
+                System.out.print(Main.inputInfo);
                 name = scanner.nextLine().trim();
                 if (filemode) System.out.println(name);
                 if (name.equals("")) throw new NotNullException();
@@ -67,7 +67,7 @@ public class ScannerManager {
         while (true) {
             try {
                 System.out.println("Enter X coordinate: ");
-                System.out.print(Main.INPUT_INFO);
+                System.out.print(Main.inputInfo);
                 userX = scanner.nextLine().trim();
                 if (userX.equals("")) throw new NotNullException();
                 if (!patternNumber.matcher(userX).matches()) throw new WrongNameException();
@@ -102,7 +102,7 @@ public class ScannerManager {
         while (true) {
             try {
                 System.out.println("Enter Y coord:");
-                System.out.print(Main.INPUT_INFO);
+                System.out.print(Main.inputInfo);
                 userY = scanner.nextLine().trim();
                 if (userY.equals("")) throw new NotNullException();
                 if (!patternNumber.matcher(userY).matches()) throw new WrongNameException();
@@ -144,7 +144,7 @@ public class ScannerManager {
         while (true) {
             try {
                 System.out.println("Enter the number of students in a group:");
-                System.out.print(Main.INPUT_INFO);
+                System.out.print(Main.inputInfo);
                 userCount = scanner.nextLine().trim();
                 if (userCount.equals("")) throw new NotNullException();
                 count = Integer.parseInt(userCount);
@@ -173,7 +173,7 @@ public class ScannerManager {
         while (true) {
             try {
                 System.out.println("Enter the number of students to be expelled:");
-                System.out.print(Main.INPUT_INFO);
+                System.out.print(Main.inputInfo);
                 userCountExpelled = scanner.nextLine().trim();
                 if (userCountExpelled.equals("")) throw new NotNullException();
                 countExpelled = Integer.parseInt(userCountExpelled);
@@ -202,7 +202,7 @@ public class ScannerManager {
         while (true) {
             try {
                 System.out.println("Enter average mark:");
-                System.out.print(Main.INPUT_INFO);
+                System.out.print(Main.inputInfo);
                 userMark = scanner.nextLine().trim();
                 countMark = Double.parseDouble(userMark);
                 if (countMark <= 0) throw new IncorrectValueException();
@@ -229,7 +229,7 @@ public class ScannerManager {
             try {
                 System.out.println("Semester list - " + Semester.getList());
                 System.out.println("Enter your semester:");
-                System.out.print(Main.INPUT_INFO);
+                System.out.print(Main.inputInfo);
                 userSemester = scanner.nextLine().trim();
                 if (userSemester.equals("")) throw new NotNullException();
                 semester = Semester.valueOf(userSemester.toUpperCase());
@@ -263,7 +263,7 @@ public class ScannerManager {
             try {
                 System.out.println("You can use formats: 'January 19, 1970', '01/19/1970'");
                 System.out.println("Enter your birthday for admin: ");
-                System.out.print(Main.INPUT_INFO);
+                System.out.print(Main.inputInfo);
                 userDate = scanner.nextLine().trim();
                 if (userDate.equals("")) throw new NotNullException();
                 date = new Date(userDate);
@@ -290,7 +290,7 @@ public class ScannerManager {
             try {
                 System.out.println("Color eye list - " + ColorEye.getList());
                 System.out.println("Enter your color eye:");
-                System.out.print(Main.INPUT_INFO);
+                System.out.print(Main.inputInfo);
                 userEyeColor = scanner.nextLine().trim();
                 if (userEyeColor.equals("")) throw new NotNullException();
                 colorEye = ColorEye.valueOf(userEyeColor.toUpperCase());
@@ -317,7 +317,7 @@ public class ScannerManager {
             try {
                 System.out.println("Color hair list - " + ColorHair.getList());
                 System.out.println("Enter your color hair:");
-                System.out.print(Main.INPUT_INFO);
+                System.out.print(Main.inputInfo);
                 userHairColor = scanner.nextLine().trim();
                 if (userHairColor.equals("")) throw new NotNullException();
                 colorHair = ColorHair.valueOf(userHairColor.toUpperCase());
@@ -343,7 +343,7 @@ public class ScannerManager {
             try {
                 System.out.println("Country list - " + Country.getList());
                 System.out.println("Enter your county:");
-                System.out.print(Main.INPUT_INFO);
+                System.out.print(Main.inputInfo);
                 userCountry = scanner.nextLine().trim();
                 if (userCountry.isEmpty()) throw new NotNullException();
                 country = Country.valueOf(userCountry.toUpperCase());
@@ -368,7 +368,7 @@ public class ScannerManager {
         while (true) {
             try {
                 System.out.println(finalQuestion);
-                System.out.print(Main.INPUT_INFO);
+                System.out.print(Main.inputInfo);
                 answer = scanner.nextLine().trim();
                 if (answer.equals("")) throw new NotNullException();
                 if (!(answer.equals("+") || answer.equals("-"))) throw new IncorrectValueException();

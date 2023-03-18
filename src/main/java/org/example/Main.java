@@ -12,8 +12,8 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
-    public static final String INPUT_COMMAND = "$ ";
-    public static final String INPUT_INFO = "> ";
+    public static final String inputCommand = "$ ";
+    public static final String inputInfo = "> ";
     public static final int NUMBER_OF_CMD = 12;
 
     public static void main(String[] args) throws IOException, ArrayIndexOutOfBoundsException {
