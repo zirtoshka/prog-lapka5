@@ -17,6 +17,7 @@ public class ScannerManager {
     public static final Pattern patternSymbols = Pattern.compile("\\w*");
     public static final Pattern patternNumber = Pattern.compile("(-?)\\d+(.\\d+)?");
 
+    public static final Pattern patterndigits = Pattern.compile("\\d*");
     private Scanner scanner;
 
     public ScannerManager(Scanner scanner) {
@@ -68,6 +69,9 @@ public class ScannerManager {
                 userX = scanner.nextLine().trim();
                 if (userX.equals("")) throw new NotNullException();
                 if (!patternNumber.matcher(userX).matches()) throw new WrongNameException();
+                if (userX.indexOf(",") > -1) {
+                    userX = userX.replace(",", ".");
+                }
                 x = Double.parseDouble(userX);
                 if (x > MAX_X) throw new IncorrectValueException();
                 break;
@@ -103,6 +107,9 @@ public class ScannerManager {
                 userY = scanner.nextLine().trim();
                 if (userY.equals("")) throw new NotNullException();
                 if (!patternNumber.matcher(userY).matches()) throw new WrongNameException();
+                if (userY.indexOf(",") > -1) {
+                    userY = userY.replace(",", ".");
+                }
                 y = Float.parseFloat(userY);
                 if (y < MIN_Y) throw new IncorrectValueException();
                 break;
@@ -136,7 +143,7 @@ public class ScannerManager {
             userCoordinates.setX(x);
             userCoordinates.setY(y);
             return userCoordinates;
-        } catch (IncorrectValuesForGroupException e){
+        } catch (IncorrectValuesForGroupException e) {
             ConsoleManager.printError(e);
             return null;
         }
@@ -229,6 +236,7 @@ public class ScannerManager {
     public Semester askSemesterEnum() throws IncorrectScriptException {
         String userSemester;
         Semester semester;
+        Integer semesterId;
         while (true) {
             try {
                 System.out.println("Semester list - " + Semester.getList());
@@ -236,8 +244,23 @@ public class ScannerManager {
                 System.out.print(Main.inputInfo);
                 userSemester = scanner.nextLine().trim();
                 if (userSemester.equals("")) throw new NotNullException();
-                semester = Semester.valueOf(userSemester.toUpperCase());
-                break;
+
+                try {
+                    semesterId = Integer.parseInt(userSemester);
+                    if( semesterId>=Semester.values().length -1 || semesterId<0){
+                        throw new IncorrectIndexInOrdinalEnumException();
+                    }
+                    semester = Semester.values()[semesterId];
+                    ConsoleManager.printInfoPurpleBackground(semester);
+                    break;
+                } catch (NumberFormatException e) {
+                    semester = Semester.valueOf(userSemester.toUpperCase());
+                    break;
+                } catch (IncorrectIndexInOrdinalEnumException e) {
+                    ConsoleManager.printError("I don't know this semester(");
+                    if (filemode) throw new IncorrectScriptException();
+                }
+
             } catch (NotNullException e) {
                 ConsoleManager.printError("It can't be empty!!");
                 if (filemode) throw new IncorrectScriptException();
@@ -290,6 +313,7 @@ public class ScannerManager {
     public ColorEye askEyeColor() throws IncorrectScriptException {
         String userEyeColor;
         ColorEye colorEye;
+        Integer colorId;
         while (true) {
             try {
                 System.out.println("Color eye list - " + ColorEye.getList());
@@ -297,8 +321,22 @@ public class ScannerManager {
                 System.out.print(Main.inputInfo);
                 userEyeColor = scanner.nextLine().trim();
                 if (userEyeColor.equals("")) throw new NotNullException();
-                colorEye = ColorEye.valueOf(userEyeColor.toUpperCase());
-                break;
+                try {
+                    colorId = Integer.parseInt(userEyeColor);
+                    if( colorId>=Semester.values().length -1 || colorId<0){
+                        throw new IncorrectIndexInOrdinalEnumException();
+                    }
+
+                    colorEye = ColorEye.values()[colorId];
+                    ConsoleManager.printInfoPurpleBackground(colorEye);
+                    break;
+                } catch (NumberFormatException e) {
+                    colorEye = ColorEye.valueOf(userEyeColor.toUpperCase());
+                    break;
+                } catch (IncorrectIndexInOrdinalEnumException e) {
+                    ConsoleManager.printError("I don't know this color(");
+                    if (filemode) throw new IncorrectScriptException();
+                }
             } catch (NotNullException e) {
                 ConsoleManager.printError("It can't be empty!!");
                 if (filemode) throw new IncorrectScriptException();
@@ -317,6 +355,7 @@ public class ScannerManager {
     public ColorHair askHairColor() throws IncorrectScriptException {
         String userHairColor;
         ColorHair colorHair;
+        Integer colorId;
         while (true) {
             try {
                 System.out.println("Color hair list - " + ColorHair.getList());
@@ -324,8 +363,21 @@ public class ScannerManager {
                 System.out.print(Main.inputInfo);
                 userHairColor = scanner.nextLine().trim();
                 if (userHairColor.equals("")) throw new NotNullException();
-                colorHair = ColorHair.valueOf(userHairColor.toUpperCase());
-                break;
+                try {
+                    colorId = Integer.parseInt(userHairColor);
+                    if( colorId>=Semester.values().length -1 || colorId<0){
+                        throw new IncorrectIndexInOrdinalEnumException();
+                    }
+                    colorHair = ColorHair.values()[colorId];
+                    ConsoleManager.printInfoPurpleBackground(colorHair);
+                    break;
+                } catch (NumberFormatException e) {
+                    colorHair = ColorHair.valueOf(userHairColor.toUpperCase());
+                    break;
+                } catch (IncorrectIndexInOrdinalEnumException e) {
+                    ConsoleManager.printError("I don't know this color(");
+                    if (filemode) throw new IncorrectScriptException();
+                }
             } catch (NotNullException e) {
                 return null;
             } catch (IllegalArgumentException e) {
@@ -343,6 +395,8 @@ public class ScannerManager {
     public Country askNationality() throws IncorrectScriptException {
         String userCountry;
         Country country;
+        Integer countryId;
+
         while (true) {
             try {
                 System.out.println("Country list - " + Country.getList());
@@ -350,8 +404,21 @@ public class ScannerManager {
                 System.out.print(Main.inputInfo);
                 userCountry = scanner.nextLine().trim();
                 if (userCountry.isEmpty()) throw new NotNullException();
-                country = Country.valueOf(userCountry.toUpperCase());
-                break;
+                try {
+                    countryId = Integer.parseInt(userCountry);
+                    if( countryId>=Semester.values().length -1 || countryId<0){
+                        throw new IncorrectIndexInOrdinalEnumException();
+                    }
+                    country = Country.values()[countryId];
+                    ConsoleManager.printInfoPurpleBackground(country);
+                    break;
+                } catch (NumberFormatException e) {
+                    country = Country.valueOf(userCountry.toUpperCase());
+                    break;
+                } catch (IncorrectIndexInOrdinalEnumException e) {
+                    ConsoleManager.printError("I don't know this country(");
+                    if (filemode) throw new IncorrectScriptException();
+                }
             } catch (NotNullException e) {
                 return null;
             } catch (IllegalArgumentException e) {

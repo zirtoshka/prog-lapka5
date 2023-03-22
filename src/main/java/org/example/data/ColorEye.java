@@ -15,7 +15,7 @@ public enum ColorEye {
         StringBuilder types = new StringBuilder();
         for (ColorEye type : values()) {
             if(!type.equals(DEFAULT_COLOR)){
-            types.append(type.name()).append("; ");}
+            types.append(type.name()+" - "+type.ordinal()).append("; ");}
         }
         return types.substring(0, types.length() - 2);
     }

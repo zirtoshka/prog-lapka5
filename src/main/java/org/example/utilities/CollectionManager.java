@@ -6,9 +6,7 @@ import org.example.exceptions.NullCollectionException;
 
 import java.io.FileNotFoundException;
 import java.time.LocalDateTime;
-import java.util.ArrayDeque;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class CollectionManager {
     private ArrayDeque<StudyGroup> studyGroupCollection;
@@ -33,6 +31,7 @@ public class CollectionManager {
         this.studyGroupCollection = new ArrayDeque<StudyGroup>();
     }
 
+
     public void loadFromFile() {
         try {
             this.studyGroupCollection = fileManager.loadFromFile();
@@ -45,6 +44,9 @@ public class CollectionManager {
                     }
                 }
             }
+         if(studyGroupCollection == null){
+             createCollection();
+         }
         } catch (FileNotFoundException e) {
             ConsoleManager.printError(e);
         }

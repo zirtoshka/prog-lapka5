@@ -37,6 +37,7 @@ public class Main {
                     new HistoryCommand(historyWriter, NUMBER_OF_CMD), new FilterContainsNameCommand(collectionManager), new PrintUniqueGroupAdminCommand(collectionManager),
                     new PrintFieldDescendingSemesterCommand(collectionManager));
             ConsoleManager consoleManager = new ConsoleManager(commandManager, scannerManager, userScanner, historyWriter);
+            ConsoleManager.printInfoPurple("App  is working. If you need help, enter 'help'");
             consoleManager.toStartMode();
         } catch (ArrayIndexOutOfBoundsException e) {
             ConsoleManager.printError("I can't find name of file");

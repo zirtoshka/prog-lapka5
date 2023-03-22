@@ -36,6 +36,7 @@ public class InfoCommand extends Command {
             ConsoleManager.printError("Usage: '" + getName() + "'");
         } catch (NullCollectionException e) {
             ConsoleManager.printError("Collection is empty");
+            return true;
         }
         return false;
     }

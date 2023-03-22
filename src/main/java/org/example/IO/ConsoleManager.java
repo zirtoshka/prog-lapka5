@@ -187,13 +187,18 @@ public class ConsoleManager {
     public void toStartMode() throws IOException {
         String[] userCmd = {"", ""};
         int cmdStatus;
+        try {
+            do {
+                System.out.print(Main.inputCommand);
+                userCmd = (scanner.nextLine().trim() + " ").split(" ", 2);
+                userCmd[ARG_CMD] = userCmd[ARG_CMD].trim();
+                cmdStatus = launchCmd(userCmd);
+            } while (cmdStatus != 2);
+        }catch (NoSuchElementException e){
+            ConsoleManager.printError("You've entered ctrl+D, bye");
+        }
 
-        do {
-            System.out.print(Main.inputCommand);
-            userCmd = (scanner.nextLine().trim() + " ").split(" ", 2);
-            userCmd[ARG_CMD] = userCmd[ARG_CMD].trim();
-            cmdStatus = launchCmd(userCmd);
-        } while (cmdStatus != 2);
+
 
 
     }

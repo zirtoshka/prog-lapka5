@@ -38,7 +38,6 @@ public class FileManager {
             studyGroupCollection = yaml.read(path);
         }catch (IOException e){
             ConsoleManager.printError("Unknown issues with file. Now it's clean and collection is empty");
-            System.out.println(e);
             PrintWriter userFile = new PrintWriter(new File(path));
             userFile.print("");
             userFile.close();

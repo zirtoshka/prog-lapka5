@@ -15,7 +15,7 @@ public enum Country {
         StringBuilder types = new StringBuilder();
         for (Country type : values()) {
             if (!type.equals(DEFAULT_COUNTRY)) {
-                types.append(type.name()).append("; ");
+                types.append(type.name()+" - "+type.ordinal()).append("; ");
             }
         }
         return types.substring(0, types.length() - 2);

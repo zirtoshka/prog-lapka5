@@ -15,7 +15,7 @@ public enum Semester {
         StringBuilder types = new StringBuilder();
         for (Semester type : values()) {
             if (!type.equals(DEFAULT_SEMESTER)) {
-                types.append(type.name()).append("; ");
+                types.append(type.name()+" - "+type.ordinal()).append("; ");
             }
         }
         return types.substring(0, types.length() - 2);
